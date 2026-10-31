@@ -1,0 +1,1 @@
+"""Weekly research digest pipeline."""

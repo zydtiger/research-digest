@@ -1,0 +1,39 @@
+# Copy to ~/.config/research-digest/config.toml, or under $XDG_CONFIG_HOME when set.
+# Every setting is required; the program has no built-in endpoints or model names.
+
+[models.scoring]
+base_url = "http://127.0.0.1:8000/v1"
+model = "local-scoring-model"
+service = "local-model.service"
+max_concurrency = 4
+
+[models.reading]
+base_url = "http://127.0.0.1:8000/v1"
+model = "local-reading-model"
+service = "local-model.service"
+max_concurrency = 4
+
+[paths]
+run_dir = "~/.local/state/research-digest/runs"
+obsidian_vault = "Vault"
+obsidian_dir = "Research digests"
+
+[[fields]]
+name = "LLM and NLP"
+arxiv_categories = ["cs.CL", "cs.LG", "cs.AI"]
+quota = 3
+
+[[fields]]
+name = "Computer vision and diffusion"
+arxiv_categories = ["cs.CV", "eess.IV"]
+quota = 3
+
+[[fields]]
+name = "Speech and audio"
+arxiv_categories = ["cs.SD", "eess.AS"]
+quota = 2
+
+[[fields]]
+name = "Quant and finance"
+arxiv_categories = ["q-fin.CP", "q-fin.PM", "q-fin.RM", "q-fin.ST", "q-fin.TR"]
+quota = 2
