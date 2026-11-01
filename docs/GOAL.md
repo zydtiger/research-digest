@@ -8,8 +8,8 @@ reading.
 ## Success criteria
 
 - A weekly run completes unattended and writes a useful note to Obsidian.
-- Backtests rank work that later drew wide attention near the top.
-- The agent reads roughly 10–20k tokens of input per week.
+- Work that later draws wide attention appears in an earlier week's shortlist.
+- The agent reads roughly 50–100k tokens of input per week.
 - Every key claim in a local-model summary traces to a quotation found in its
   source text.
 

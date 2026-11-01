@@ -3,8 +3,19 @@ name = "research-digest"
 version = "0.1.0"
 description = "A weekly research digest that filters with local models before an agent reads the results"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+  "defusedxml>=0.7.1,<1",
+  "feedparser>=6.0,<7",
+  "httpx>=0.27,<1",
+  "openai>=1.60,<3",
+  "pydantic>=2.9,<3",
+  "pymupdf4llm>=0.0.17,<2",
+  "pyyaml>=6,<7",
+  "trafilatura>=2.0,<3",
+]
 
 [project.scripts]
 research-digest = "research_digest.cli:main"
@@ -14,6 +25,8 @@ dev = [
   "mypy>=1.13,<2",
   "pytest>=8.3,<9",
   "ruff>=0.9,<1",
+  "types-defusedxml>=0.7,<1",
+  "types-pyyaml>=6,<7",
 ]
 
 [build-system]
@@ -37,3 +50,7 @@ select = ["E", "F", "I", "UP", "B"]
 python_version = "3.12"
 files = ["src", "tests"]
 warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = ["feedparser.*", "pymupdf4llm.*", "trafilatura.*"]
+ignore_missing_imports = true

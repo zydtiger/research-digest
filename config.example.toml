@@ -1,26 +1,69 @@
 # Copy to ~/.config/research-digest/config.toml, or under $XDG_CONFIG_HOME when set.
-# Every setting is required; the program has no built-in endpoints or model names.
+# Every setting is required unless marked optional; the program has no built-in
+# endpoints or model names.
 
 [models.scoring]
 base_url = "http://127.0.0.1:8000/v1"
 model = "local-scoring-model"
-service = "local-model.service"
 max_concurrency = 4
 
 [models.reading]
 base_url = "http://127.0.0.1:8000/v1"
 model = "local-reading-model"
-service = "local-model.service"
 max_concurrency = 4
 
 [paths]
 run_dir = "~/.local/state/research-digest/runs"
-obsidian_vault = "Vault"
-obsidian_dir = "Research digests"
+note_dir = "~/notes/Research Digests"
+parent_note = "~/notes/Calendar.md"
+
+[agent]
+# Any command that reads a prompt on stdin and prints only the reply on stdout.
+command = ["claude", "-p", "--tools", "", "--setting-sources", "", "--disable-slash-commands", "--no-session-persistence"]
+language = "English"
+
+[sources]
+attention_window_days = 28
+# Papers can be announced a few days after their arXiv creation date.
+arrival_grace_days = 3
+exclude_keywords = []
+preprint_servers = ["biorxiv", "medrxiv"]
+preprint_categories = ["bioinformatics", "health informatics", "pathology", "radiology and imaging"]
+preprint_keywords = ["deep learning", "foundation model", "large language model", "machine learning"]
+hf_model_limit = 100
+hn_min_points = 20
+github_topics = ["llm", "diffusion-models", "speech-recognition"]
+github_limit = 20
+blogs = ["https://huggingface.co/blog/feed.xml"]
+
+[ranking]
+min_attention = 30.0
+attention_weight = 0.6
+content_weight = 0.4
+card_count = 30
+global_slots = 5
+novelty_slots = 6
+
+[ranking.signal_weights]
+hf_upvotes = 3.0
+hf_comments = 2.0
+hn_points = 1.0
+hn_comments = 0.5
+github_stars = 0.1
+model_likes = 0.5
+model_trending = 1.0
+
+[ranking.kind_slots]
+model = 3
+blog = 3
+
+[reading]
+max_items = 10
+max_chars = 400000
 
 [[fields]]
 name = "LLM and NLP"
-arxiv_categories = ["cs.CL", "cs.LG", "cs.AI"]
+arxiv_categories = ["cs.AI", "cs.CL", "cs.LG", "stat.ML"]
 quota = 3
 
 [[fields]]
@@ -37,3 +80,18 @@ quota = 2
 name = "Quant and finance"
 arxiv_categories = ["q-fin.CP", "q-fin.PM", "q-fin.RM", "q-fin.ST", "q-fin.TR"]
 quota = 2
+
+[[fields]]
+name = "Robotics"
+arxiv_categories = ["cs.RO"]
+quota = 2
+
+[[fields]]
+name = "Biomedical AI"
+arxiv_categories = ["q-bio.QM"]
+quota = 1
+
+[[fields]]
+name = "Other"
+arxiv_categories = []
+quota = 0
