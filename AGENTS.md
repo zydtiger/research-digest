@@ -19,7 +19,17 @@
   `prefix(scope): imperative summary` with a lowercase first word and no trailing
   period. Prefixes: `feat`, `fix`, `docs`, `refactor`, `test`, `build`, `ci`,
   `perf`, `chore`, `revert`.
-- This project has no versioned releases.
+
+## Releases
+
+Versions are `0.x` under active development: breaking changes are expected
+between releases. A release is an annotated `vX.Y.Z` tag matching the
+`pyproject.toml` version, with a GitHub Release whose notes summarize the
+changes. Nothing is published to PyPI. To release from a clean `main`
+synchronized with `origin/main`: bump the version in `pyproject.toml`, run
+`uv lock`, commit both files, run both hook stages, tag that commit, push the
+tag, and publish the GitHub Release from it. Never move a published tag. Each
+release needs its own explicit authorization.
 
 ## Validation
 
